@@ -139,9 +139,7 @@ public class EmployeeDto {
 
     public void setUser(AppUserDto user) { this.user = user; }*/
 
-    public DepartmentDto getDepartment() {
-        return department;
-    }
+    public DepartmentDto getDepartment() { return department; }
 
     public void setDepartment(DepartmentDto department) { this.department = department; }
 
