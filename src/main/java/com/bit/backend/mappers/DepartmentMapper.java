@@ -1,7 +1,9 @@
 package com.bit.backend.mappers;
 
+import com.bit.backend.dtos.EmployeeDto;
 import com.bit.backend.dtos.StatusDto;
 import com.bit.backend.dtos.DepartmentDto;
+import com.bit.backend.entities.EmployeeEntity;
 import com.bit.backend.entities.StatusEntity;
 import com.bit.backend.entities.DepartmentEntity;
 import org.mapstruct.Builder;
@@ -13,15 +15,21 @@ import java.util.List;
 @Mapper(componentModel = "spring", builder = @Builder(disableBuilder = true))
 public interface DepartmentMapper {
 
+    EmployeeDto toEmployeeDto(EmployeeEntity entity);
+
+    List<EmployeeDto> toEmployeeDtoList(List<EmployeeEntity> entities);
+
     StatusDto toStatusDto(StatusEntity entity);
 
     List<StatusDto> toStatusDtoList(List<StatusEntity> entities);
 
+    @Mapping(target = "headEmployee", source = "headEmployee")
     @Mapping(target = "status", source = "status")
     DepartmentDto toDepartmentDto(DepartmentEntity entity);
 
     List<DepartmentDto> toDepartmentDtoList(List<DepartmentEntity> entities);
 
+    @Mapping(target = "headEmployee", ignore = true)
     @Mapping(target = "status", ignore = true)
     DepartmentEntity toDepartmentEntity(DepartmentDto dto);
 }
