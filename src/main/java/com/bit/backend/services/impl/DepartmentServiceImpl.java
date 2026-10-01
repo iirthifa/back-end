@@ -1,10 +1,12 @@
 package com.bit.backend.services.impl;
 
 import com.bit.backend.dtos.DepartmentDto;
+import com.bit.backend.entities.EmployeeEntity;
 import com.bit.backend.entities.StatusEntity;
 import com.bit.backend.entities.DepartmentEntity;
 import com.bit.backend.exceptions.AppException;
 import com.bit.backend.mappers.DepartmentMapper;
+import com.bit.backend.repositories.EmployeeRepository;
 import com.bit.backend.repositories.StatusRepository;
 import com.bit.backend.repositories.DepartmentRepository;
 import com.bit.backend.services.DepartmentServiceI;
@@ -18,13 +20,16 @@ import java.util.List;
 public class DepartmentServiceImpl implements DepartmentServiceI {
 
     private final DepartmentRepository departmentRepository;
+    private final EmployeeRepository employeeRepository;
     private final StatusRepository statusRepository;
     private final DepartmentMapper departmentMapper;
 
     public DepartmentServiceImpl(DepartmentRepository departmentRepository,
-                              StatusRepository statusRepository,
-                              DepartmentMapper departmentMapper) {
+                                 EmployeeRepository employeeRepository,
+                                 StatusRepository statusRepository,
+                                 DepartmentMapper departmentMapper) {
         this.departmentRepository = departmentRepository;
+        this.employeeRepository = employeeRepository;
         this.statusRepository = statusRepository;
         this.departmentMapper = departmentMapper;
     }
@@ -32,14 +37,16 @@ public class DepartmentServiceImpl implements DepartmentServiceI {
     @Override
     @Transactional
     public DepartmentDto addDepartment(DepartmentDto departmentDto) {
+        EmployeeEntity headEmployee = resolveHeadEmployee(departmentDto);
         StatusEntity status = resolveStatus(departmentDto);
         DepartmentEntity entity = departmentMapper.toDepartmentEntity(departmentDto);
         entity.setId(null);
+        entity.setHeadEmployee(headEmployee);
         entity.setStatus(status);
 
         DepartmentEntity saved = departmentRepository.save(entity);
         if (saved.getDeptCode() == null || saved.getDeptCode().isBlank()) {
-            saved.setDeptCode("STU-" + saved.getId());
+            saved.setDeptCode("DEP-" + saved.getId());
             saved = departmentRepository.save(saved);
         }
         return departmentMapper.toDepartmentDto(saved);
@@ -63,10 +70,11 @@ public class DepartmentServiceImpl implements DepartmentServiceI {
         DepartmentEntity existing = departmentRepository.findById(id)
                 .orElseThrow(() -> new AppException("Department not found", HttpStatus.NOT_FOUND));
 
+        EmployeeEntity headEmployee = resolveHeadEmployee(departmentDto);
         StatusEntity status = resolveStatus(departmentDto);
         existing.setDeptName(departmentDto.getDeptName());
         existing.setDescription(departmentDto.getDescription());
-        //existing.setHeadEmployee(headEmployee);
+        existing.setHeadEmployee(headEmployee);
         existing.setStatus(status);
         if (departmentDto.getDeptCode() != null && !departmentDto.getDeptCode().isBlank()) {
             existing.setDeptCode(departmentDto.getDeptCode());
@@ -83,6 +91,14 @@ public class DepartmentServiceImpl implements DepartmentServiceI {
         DepartmentDto dto = departmentMapper.toDepartmentDto(existing);
         departmentRepository.delete(existing);
         return dto;
+    }
+
+    private EmployeeEntity resolveHeadEmployee(DepartmentDto departmentDto) {
+        if (departmentDto.getHeadEmployee() == null || departmentDto.getHeadEmployee().getId() == null) {
+            return null; //head employee is optional
+        }
+        return employeeRepository.findById(departmentDto.getHeadEmployee().getId())
+                .orElseThrow(() -> new AppException("Head Employee not found", HttpStatus.BAD_REQUEST));
     }
 
     private StatusEntity resolveStatus(DepartmentDto departmentDto) {

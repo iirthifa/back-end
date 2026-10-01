@@ -62,10 +62,10 @@ public class DepartmentController {
     /**
      * Used by Class Registration grid filter.
      * Returns empty list until course-enrollment APIs are added.
-     */
+
     @GetMapping("/department/getClass/{departmentId}")
     public ResponseEntity<ApiListResponse<Map<String, Object>>> getDepartmentsForClass(@PathVariable long departmentId) {
         List<Map<String, Object>> empty = Collections.emptyList();
         return ResponseEntity.ok(ApiListResponse.of(empty));
-    }
+    }*/
 }

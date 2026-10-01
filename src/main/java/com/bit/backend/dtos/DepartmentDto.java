@@ -7,7 +7,7 @@ public class DepartmentDto {
     private String deptCode;
     private String deptName;
     private String description;
-    //private EmployeeDto headEmployee;
+    private EmployeeDto headEmployee;
     private StatusDto status;
 
     public DepartmentDto() {
@@ -45,13 +45,13 @@ public class DepartmentDto {
         this.description = description;
     }
 
-    /*public EmployeeDto getEmployee() {
+    public EmployeeDto getHeadEmployee() {
         return headEmployee;
     }
 
-    public void setEmployee(EmployeeDto headEmployee) {
+    public void setHeadEmployee(EmployeeDto headEmployee) {
         this.headEmployee = headEmployee;
-    }*/
+    }
 
     public StatusDto getStatus() {
         return status;
@@ -59,6 +59,35 @@ public class DepartmentDto {
 
     public void setStatus(StatusDto status) {
         this.status = status;
+    }
+
+    /**
+     * Frontend sometimes sends headEmployee as id ("1") and sometimes as { id, firstName, lastName }.
+     */
+    @com.fasterxml.jackson.annotation.JsonSetter("headEmployee")
+    public void setHeadEmployeeFromJson(JsonNode node) {
+        if (node == null || node.isNull()) {
+            this.headEmployee = null;
+            return;
+        }
+        EmployeeDto dto = new EmployeeDto();
+        if (node.isNumber() || node.isTextual()) {
+            dto.setId(node.asLong());
+            this.headEmployee = dto;
+            return;
+        }
+        if (node.isObject()) {
+            if (node.hasNonNull("id")) {
+                dto.setId(node.get("id").asLong());
+            }
+            if (node.hasNonNull("firstName")) {
+                dto.setFirstName(node.get("firstName").asText());
+            }
+            if (node.hasNonNull("lastName")) {
+                dto.setLastName(node.get("lastName").asText());
+            }
+            this.headEmployee = dto;
+        }
     }
 
     /**

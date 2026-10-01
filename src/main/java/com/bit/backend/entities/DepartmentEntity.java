@@ -19,9 +19,9 @@ public class DepartmentEntity extends AuditableEntity {
     @Column(name = "description")
     private String description;
 
-    //@ManyToOne(fetch = FetchType.EAGER)
-    //@JoinColumn(name = "head_employee_id", nullable = false)
-    //private EmployeeEntity headEmployee;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "head_employee_id")
+    private EmployeeEntity headEmployee;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "status_id", nullable = false)
@@ -62,9 +62,9 @@ public class DepartmentEntity extends AuditableEntity {
         this.description = description;
     }
 
-    //public EmployeeEntity getHeadEmployee() { return headEmployee; }
+    public EmployeeEntity getHeadEmployee() { return headEmployee; }
 
-    //public void setHeadEmployee(EmployeeEntity headEmployee) { this.headEmployee = headEmployee; }
+    public void setHeadEmployee(EmployeeEntity headEmployee) { this.headEmployee = headEmployee; }
 
     public StatusEntity getStatus() {
         return status;
