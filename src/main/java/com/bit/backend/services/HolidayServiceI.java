@@ -8,6 +8,6 @@ public interface HolidayServiceI {
     HolidayDto addHoliday(HolidayDto studentDto);
     List<HolidayDto> getAllHolidays();
     HolidayDto getHolidayById(long id);
-    HolidayDto updateHoliday(long id, HolidayDto studentDto);
+    HolidayDto updateHoliday(long id, HolidayDto holidayDto);
     HolidayDto deleteHoliday(long id);
 }
