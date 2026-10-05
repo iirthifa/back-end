@@ -46,7 +46,7 @@ public class DepartmentServiceImpl implements DepartmentServiceI {
 
         DepartmentEntity saved = departmentRepository.save(entity);
         if (saved.getDeptCode() == null || saved.getDeptCode().isBlank()) {
-            saved.setDeptCode("DEP-" + saved.getId());
+            saved.setDeptCode("DEPT-" + saved.getId());
             saved = departmentRepository.save(saved);
         }
         return departmentMapper.toDepartmentDto(saved);

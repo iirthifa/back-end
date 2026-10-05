@@ -62,10 +62,10 @@ public class RosterPeriodController {
     /**
      * Used by Class Registration grid filter.
      * Returns empty list until course-enrollment APIs are added.
-     */
+
     @GetMapping("/rosterPeriod/getClass/{rosterPeriodId}")
     public ResponseEntity<ApiListResponse<Map<String, Object>>> getRosterPeriodsForClass(@PathVariable long rosterPeriodId) {
         List<Map<String, Object>> empty = Collections.emptyList();
         return ResponseEntity.ok(ApiListResponse.of(empty));
-    }
+    }*/
 }

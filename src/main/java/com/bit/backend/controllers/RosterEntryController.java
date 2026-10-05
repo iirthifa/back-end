@@ -31,7 +31,7 @@ public class RosterEntryController {
     }
 
     @GetMapping("/rosterEntry")
-    public ResponseEntity<ApiListResponse<RosterEntryDto>> getAllRosterEntrys() {
+    public ResponseEntity<ApiListResponse<RosterEntryDto>> getAllRosterEntries() {
         return ResponseEntity.ok(ApiListResponse.of(rosterEntryServiceI.getAllRosterEntries()));
     }
 
@@ -62,10 +62,10 @@ public class RosterEntryController {
     /**
      * Used by Class Registration grid filter.
      * Returns empty list until course-enrollment APIs are added.
-     */
+
     @GetMapping("/rosterEntry/getClass/{rosterEntryId}")
     public ResponseEntity<ApiListResponse<Map<String, Object>>> getRosterEntriesForClass(@PathVariable long rosterEntryId) {
         List<Map<String, Object>> empty = Collections.emptyList();
         return ResponseEntity.ok(ApiListResponse.of(empty));
-    }
+    }*/
 }

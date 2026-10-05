@@ -3,7 +3,7 @@ package com.bit.backend.entities;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
-import java.sql.Time;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "shift")
@@ -13,23 +13,23 @@ public class ShiftEntity extends AuditableEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "shift_code")
+    @Column(name = "shift_code", length = 50)
     private String shiftCode;
 
-    @Column(name = "shift_name", nullable = false)
+    @Column(name = "shift_name", nullable = false, length = 100)
     private String shiftName;
 
     @Column(name = "start_time", nullable = false)
-    private Time startTime;
+    private LocalTime startTime;
 
     @Column(name = "end_time", nullable = false)
-    private Time endTime;
+    private LocalTime endTime;
 
     @Column(name = "break_minutes")
     private Integer breakMinutes;
 
-    @Column(name = "ot_multiplier")
-    private BigDecimal otMultiplier;
+    @Column(name = "ot_multiplier", precision = 3, scale = 2)
+    private BigDecimal otMultiplier = new BigDecimal("1.50");
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "status_id", nullable = false)
@@ -62,19 +62,19 @@ public class ShiftEntity extends AuditableEntity {
         this.shiftName = shiftName;
     }
 
-    public Time getStartTime() {
+    public LocalTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Time startTime) {
+    public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
 
-    public Time getEndTime() {
+    public LocalTime getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Time endTime) {
+    public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
     }
 

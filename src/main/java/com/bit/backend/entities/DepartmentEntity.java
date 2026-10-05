@@ -10,13 +10,13 @@ public class DepartmentEntity extends AuditableEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "dept_code")
+    @Column(name = "dept_code", length = 50)
     private String deptCode;
 
-    @Column(name = "dept_name", nullable = false)
+    @Column(name = "dept_name", nullable = false, length = 100)
     private String deptName;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 255)
     private String description;
 
     @ManyToOne(fetch = FetchType.EAGER)

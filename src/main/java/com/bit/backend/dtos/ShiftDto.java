@@ -3,16 +3,16 @@ package com.bit.backend.dtos;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import java.math.BigDecimal;
-import java.sql.Time;
+import java.time.LocalTime;
 
 public class ShiftDto {
     private Long id;
     private String shiftCode;
     private String shiftName;
-    private Time startTime;
-    private Time endTime;
+    private LocalTime startTime;
+    private LocalTime endTime;
     private Integer breakMinutes;
-    private BigDecimal otMultiplier;
+    private BigDecimal otMultiplier = new BigDecimal("1.50");
     private StatusDto status;
 
     public ShiftDto() {
@@ -42,19 +42,19 @@ public class ShiftDto {
         this.shiftName = shiftName;
     }
 
-    public Time getStartTime() {
+    public LocalTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Time startTime) {
+    public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
 
-    public Time getEndTime() {
+    public LocalTime getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Time endTime) {
+    public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
     }
 

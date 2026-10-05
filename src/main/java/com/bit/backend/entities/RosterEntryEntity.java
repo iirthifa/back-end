@@ -2,10 +2,10 @@ package com.bit.backend.entities;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "rosterEntry")
+@Table(name = "roster_entry")
 public class RosterEntryEntity extends AuditableEntity {
 
     @Id
@@ -13,9 +13,9 @@ public class RosterEntryEntity extends AuditableEntity {
     private Long id;
 
     @Column(name = "work_date", nullable = false)
-    private Date workDate;
+    private LocalDate workDate;
 
-    @Column(name = "notes")
+    @Column(name = "notes", length = 255)
     private String notes;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -45,11 +45,11 @@ public class RosterEntryEntity extends AuditableEntity {
         this.id = id;
     }
 
-    public Date getWorkDate() {
+    public LocalDate getWorkDate() {
         return workDate;
     }
 
-    public void setWorkDate(Date workDate) {
+    public void setWorkDate(LocalDate workDate) {
         this.workDate = workDate;
     }
 
