@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -36,12 +37,16 @@ public class ShiftServiceImpl implements ShiftServiceI {
         ShiftEntity entity = shiftMapper.toShiftEntity(shiftDto);
         entity.setId(null);
         entity.setStatus(status);
+        if (entity.getOtMultiplier() == null) {
+            entity.setOtMultiplier(new BigDecimal("1.50"));
+        }
 
         ShiftEntity saved = shiftRepository.save(entity);
         if (saved.getShiftCode() == null || saved.getShiftCode().isBlank()) {
-            saved.setShiftCode("STU-" + saved.getId());
+            saved.setShiftCode("SHIFT-" + saved.getId());
             saved = shiftRepository.save(saved);
         }
+
         return shiftMapper.toShiftDto(saved);
     }
 
@@ -68,10 +73,12 @@ public class ShiftServiceImpl implements ShiftServiceI {
         existing.setStartTime(shiftDto.getStartTime());
         existing.setEndTime(shiftDto.getEndTime());
         existing.setBreakMinutes(shiftDto.getBreakMinutes());
-        existing.setOtMultiplier(shiftDto.getOtMultiplier());
         existing.setStatus(status);
         if (shiftDto.getShiftCode() != null && !shiftDto.getShiftCode().isBlank()) {
             existing.setShiftCode(shiftDto.getShiftCode());
+        }
+        if (shiftDto.getOtMultiplier() != null) {
+            existing.setOtMultiplier(shiftDto.getOtMultiplier());
         }
 
         return shiftMapper.toShiftDto(shiftRepository.save(existing));

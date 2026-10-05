@@ -10,13 +10,13 @@ public class DesignationEntity extends AuditableEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "designation_name", nullable = false, unique = true)
+    @Column(name = "designation_name", nullable = false, unique = true, length = 100)
     private String designationName;
 
     @Column(name = "grade_level")
     private Integer gradeLevel;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 255)
     private String description;
 
     public DesignationEntity() {

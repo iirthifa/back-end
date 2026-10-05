@@ -35,13 +35,11 @@ public class RosterPeriodServiceImpl implements RosterPeriodServiceI {
         StatusEntity status = resolveStatus(rosterPeriodDto);
         RosterPeriodEntity entity = rosterPeriodMapper.toRosterPeriodEntity(rosterPeriodDto);
         entity.setId(null);
+        entity.setPublished(false);
         entity.setStatus(status);
 
         RosterPeriodEntity saved = rosterPeriodRepository.save(entity);
-        /*if (saved.getRosterPeriodCode() == null || saved.getRosterPeriodCode().isBlank()) {
-            saved.setRosterPeriodCode("STU-" + saved.getId());
-            saved = rosterPeriodRepository.save(saved);
-        }*/
+
         return rosterPeriodMapper.toRosterPeriodDto(saved);
     }
 
@@ -67,11 +65,10 @@ public class RosterPeriodServiceImpl implements RosterPeriodServiceI {
         existing.setPeriodName(rosterPeriodDto.getPeriodName());
         existing.setStartDate(rosterPeriodDto.getStartDate());
         existing.setEndDate(rosterPeriodDto.getEndDate());
-        existing.setPublished(rosterPeriodDto.getPublished());
         existing.setStatus(status);
-        /*if (rosterPeriodDto.getRosterPeriodCode() != null && !rosterPeriodDto.getRosterPeriodCode().isBlank()) {
-            existing.setRosterPeriodCode(rosterPeriodDto.getRosterPeriodCode());
-        }*/
+        if (rosterPeriodDto.getPublished() != null) {
+            existing.setPublished(rosterPeriodDto.getPublished());
+        }
 
         return rosterPeriodMapper.toRosterPeriodDto(rosterPeriodRepository.save(existing));
     }

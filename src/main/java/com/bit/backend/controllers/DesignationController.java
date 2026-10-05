@@ -53,10 +53,10 @@ public class DesignationController {
     /**
      * Used by Class Registration grid filter.
      * Returns empty list until course-enrollment APIs are added.
-     */
+
     @GetMapping("/designation/getClass/{designationId}")
     public ResponseEntity<ApiListResponse<Map<String, Object>>> getDesignationsForClass(@PathVariable long designationId) {
         List<Map<String, Object>> empty = Collections.emptyList();
         return ResponseEntity.ok(ApiListResponse.of(empty));
-    }
+    }*/
 }

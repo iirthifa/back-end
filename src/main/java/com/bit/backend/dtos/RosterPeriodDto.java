@@ -2,13 +2,13 @@ package com.bit.backend.dtos;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class RosterPeriodDto {
     private Long id;
     private String periodName;
-    private Date startDate;
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private Boolean published;
     private StatusDto status;
 
@@ -31,19 +31,19 @@ public class RosterPeriodDto {
         this.periodName = periodName;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 

@@ -60,10 +60,7 @@ public class RosterEntryServiceImpl implements RosterEntryServiceI {
         entity.setStatus(status);
 
         RosterEntryEntity saved = rosterEntryRepository.save(entity);
-        /*if (saved.getRosterEntryCode() == null || saved.getRosterEntryCode().isBlank()) {
-            saved.setRosterEntryCode("STU-" + saved.getId());
-            saved = rosterEntryRepository.save(saved);
-        }*/
+
         return rosterEntryMapper.toRosterEntryDto(saved);
     }
 
@@ -95,9 +92,6 @@ public class RosterEntryServiceImpl implements RosterEntryServiceI {
         existing.setShift(shift);
         existing.setRosterPeriod(rosterPeriod);
         existing.setStatus(status);
-        /*if (rosterEntryDto.getRosterEntryCode() != null && !rosterEntryDto.getRosterEntryCode().isBlank()) {
-            existing.setRosterEntryCode(rosterEntryDto.getRosterEntryCode());
-        }*/
 
         return rosterEntryMapper.toRosterEntryDto(rosterEntryRepository.save(existing));
     }

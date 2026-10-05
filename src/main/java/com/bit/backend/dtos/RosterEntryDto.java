@@ -2,11 +2,11 @@ package com.bit.backend.dtos;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class RosterEntryDto {
     private Long id;
-    private Date workDate;
+    private LocalDate workDate;
     private String notes;
     private EmployeeDto employee;
     private ShiftDto shift;
@@ -24,11 +24,11 @@ public class RosterEntryDto {
         this.id = id;
     }
 
-    public Date getWorkDate() {
+    public LocalDate getWorkDate() {
         return workDate;
     }
 
-    public void setWorkDate(Date workDate) {
+    public void setWorkDate(LocalDate workDate) {
         this.workDate = workDate;
     }
 
@@ -86,7 +86,7 @@ public class RosterEntryDto {
     }
 
     /**
-     * Frontend sometimes sends shift as id ("1") and sometimes as { id, name }.
+     * Frontend sometimes sends shift as id ("1") and sometimes as { id, shiftName }.
      */
     @com.fasterxml.jackson.annotation.JsonSetter("shift")
     public void setShiftFromJson(JsonNode node) {
@@ -112,7 +112,7 @@ public class RosterEntryDto {
     }
 
     /**
-     * Frontend sometimes sends status as id ("1") and sometimes as { id, name }.
+     * Frontend sometimes sends rosterPeriod as id ("1") and sometimes as { id, periodName }.
      */
     @com.fasterxml.jackson.annotation.JsonSetter("rosterPeriod")
     public void setRosterPeriodFromJson(JsonNode node) {
