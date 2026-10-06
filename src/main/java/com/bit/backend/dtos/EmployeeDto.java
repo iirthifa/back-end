@@ -1,183 +1,129 @@
 package com.bit.backend.dtos;
 
-import com.fasterxml.jackson.databind.JsonNode;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.Date;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
+@Getter
+@Setter
 public class EmployeeDto {
     private Long id;
-    private String employeeCode;
+    private String eeid;
+    private Long comSerialId;
+    private String imageName;
+    private String empRef;
+    private String empProxId;
+    private String title;
     private String firstName;
-    private String lastName;
-    private String email;
-    private String phone;
+    private String surname;
+    private String nameWithInitials;
+    private String callName;
+    private String fullName;
     private String nic;
+    private String tin;
+    private String phone1;
+    private String phone2;
+    private String personalEmail;
+    private String companyPhone;
+    private String companyEmail;
+    private LocalDate dob;
     private String gender;
-    private String address;
-    private Date dateOfBirth;
-    private Date hireDate;
-    private Date resignDate;
-    private String bankName;
-    private String bankAccount;
-    //private AppUserDto user;
-    private DepartmentDto department;
-    private DesignationDto designation;
-    private StatusDto status;
-
-    public EmployeeDto() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getEmployeeCode() { return employeeCode; }
-
-    public void setEmployeeCode(String employeeCode) { this.employeeCode = employeeCode; }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getNic() {
-        return nic;
-    }
-
-    public void setNic(String nic) {
-        this.nic = nic;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public Date getHireDate() {
-        return hireDate;
-    }
-
-    public void setHireDate(Date hireDate) {
-        this.hireDate = hireDate;
-    }
-
-    public Date getResignDate() {
-        return resignDate;
-    }
-
-    public void setResignDate(Date resignDate) {
-        this.resignDate = resignDate;
-    }
-
-    public String getBankName() {
-        return bankName;
-    }
-
-    public void setBankName(String bankName) {
-        this.bankName = bankName;
-    }
-
-    public String getBankAccount() {
-        return bankAccount;
-    }
-
-    public void setBankAccount(String bankAccount) {
-        this.bankAccount = bankAccount;
-    }
-
-    /*public AppUserDto getUser() { return user; }
-
-    public void setUser(AppUserDto user) { this.user = user; }*/
-
-    public DepartmentDto getDepartment() { return department; }
-
-    public void setDepartment(DepartmentDto department) { this.department = department; }
-
-    public DesignationDto getDesignation() {
-        return designation;
-    }
-
-    public void setDesignation(DesignationDto designation) { this.designation = designation; }
-
-    public StatusDto getStatus() {
-        return status;
-    }
-
-    public void setStatus(StatusDto status) { this.status = status; }
-
-    /**
-     * Frontend sometimes sends status as id ("1") and sometimes as { id, name }.
-     */
-    @com.fasterxml.jackson.annotation.JsonSetter("status")
-    public void setStatusFromJson(JsonNode node) {
-        if (node == null || node.isNull()) {
-            this.status = null;
-            return;
-        }
-        StatusDto dto = new StatusDto();
-        if (node.isNumber() || node.isTextual()) {
-            dto.setId(node.asLong());
-            this.status = dto;
-            return;
-        }
-        if (node.isObject()) {
-            if (node.hasNonNull("id")) {
-                dto.setId(node.get("id").asLong());
-            }
-            if (node.hasNonNull("name")) {
-                dto.setName(node.get("name").asText());
-            }
-            this.status = dto;
-        }
-    }
+    private String bloodGroup;
+    private Long nationalitySerialId;
+    private Long ethnicitySerialId;
+    private Long religionSerialId;
+    private String maritalStatus;
+    private Integer childrenCount;
+    private String emergencyContact;
+    private String emergencyContactNumber;
+    private String permaAddress1;
+    private String permaAddress2;
+    private String permaAddress3;
+    private Long districtSerialId;
+    private Long divSectSerialId;
+    private Long gndSerialId;
+    private String electorateResidence;
+    private Long pollingSerialId;
+    private BigDecimal distanceToPollingCenter;
+    private String permaMoh;
+    private Long policeStationSerialId;
+    private String currAddress1;
+    private String currAddress2;
+    private String currAddress3;
+    private Long currDistrictSerialId;
+    private Long currDivSectSerialId;
+    private Long currGndSerialId;
+    private String currMoh;
+    private Long currPoliceStationSerialId;
+    private Long transportRouteSerialId;
+    private String fartherName;
+    private String fatherContactNo;
+    private String fatherNic;
+    private String fatherStatus;
+    private String motherName;
+    private String motherContactNo;
+    private String motherNic;
+    private String motherStatus;
+    private String nominee1Name;
+    private String nominee1Address1;
+    private String nominee1Address2;
+    private String nominee1Address3;
+    private String nominee1Nic;
+    private String nominee1Contact1;
+    private String nominee1Contact2;
+    private String nominee1Remarks;
+    private String nominee2Name;
+    private String nominee2Address1;
+    private String nominee2Address2;
+    private String nominee2Address3;
+    private String nominee2Nic;
+    private String nominee2Contact1;
+    private String nominee2Contact2;
+    private String nominee2Remarks;
+    private LocalDate doj;
+    private LocalDate doc;
+    private String confirmationStatus;
+    private Long deptSerialId;
+    private Long sectSerialId;
+    private Long desigSerialId;
+    private Long jtSerialId;
+    private String grade;
+    private String scheme;
+    private Long buildingSerialId;
+    private Long floorSerialId;
+    private Long lineSerialId;
+    private Long shiftSerialId;
+    private BigDecimal basicSalary;
+    private Boolean preOtAllowed;
+    private Boolean postOtAllowed;
+    private BigDecimal allowedOtHrs;
+    private Boolean lateDeduct;
+    private Boolean epfEntitled;
+    private String epfNumber;
+    private String etfNumber;
+    private String bankAccNo;
+    private String bankCode;
+    private Long bankBranchSerialId;
+    private Boolean addAttendance;
+    private LocalDate dot;
+    private String terminationType;
+    private String terminationReason;
+    private LocalDate lastWorkDate;
+    private Boolean serviceLtrIssued;
+    private String notes;
+    private String inactiveStatus;
+    private Boolean active;
+    private Long createdBy;
+    private LocalDateTime createdDate;
+    private Long modifiedBy;
+    private LocalDateTime modifiedDate;
+    private Boolean isDeleted;
+    private Long deletedBy;
+    private LocalDateTime deletedDate;
+    private BigDecimal attendanceBonus;
+    private Boolean attendanceBonusAllowed;
+    private String companyPhone2;
 }

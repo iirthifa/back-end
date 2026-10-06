@@ -83,8 +83,10 @@ public class DepartmentDto {
             if (node.hasNonNull("firstName")) {
                 dto.setFirstName(node.get("firstName").asText());
             }
-            if (node.hasNonNull("lastName")) {
-                dto.setLastName(node.get("lastName").asText());
+            if (node.hasNonNull("surname")) {
+                dto.setSurname(node.get("surname").asText());
+            } else if (node.hasNonNull("lastName")) {
+                dto.setSurname(node.get("lastName").asText());
             }
             this.headEmployee = dto;
         }

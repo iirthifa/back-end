@@ -1,216 +1,344 @@
 package com.bit.backend.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.Date;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "employee")
-public class EmployeeEntity extends AuditableEntity {
+@Getter
+@Setter
+public class EmployeeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "employee_code")
-    private String employeeCode;
+    @Column(length = 50)
+    private String eeid;
 
-    @Column(name = "first_name", nullable = false)
+    private Long comSerialId;
+
+    @Column(length = 255)
+    private String imageName;
+
+    @Column(length = 50)
+    private String empRef;
+
+    @Column(length = 50)
+    private String empProxId;
+
+    @Column(length = 20)
+    private String title;
+
+    @Column(length = 100)
     private String firstName;
 
-    @Column(name = "last_name", nullable = false)
-    private String lastName;
+    @Column(length = 100)
+    private String surname;
 
-    @Column(name = "email")
-    private String email;
+    @Column(length = 150)
+    private String nameWithInitials;
 
-    @Column(name = "phone")
-    private String phone;
+    @Column(length = 100)
+    private String callName;
 
-    @Column(name = "nic")
+    @Column(length = 200)
+    private String fullName;
+
+    @Column(length = 20)
     private String nic;
 
-    @Column(name = "gender")
+    @Column(length = 30)
+    private String tin;
+
+    @Column(length = 30)
+    private String phone1;
+
+    @Column(length = 30)
+    private String phone2;
+
+    @Column(length = 150)
+    private String personalEmail;
+
+    @Column(length = 30)
+    private String companyPhone;
+
+    @Column(length = 150)
+    private String companyEmail;
+
+    private LocalDate dob;
+
+    @Column(length = 20)
     private String gender;
 
-    @Column(name = "address")
-    private String address;
+    @Column(length = 10)
+    private String bloodGroup;
 
-    @Column(name = "date_of_birth")
-    private Date dateOfBirth;
+    private Long nationalitySerialId;
 
-    @Column(name = "hire_date", nullable = false)
-    private Date hireDate;
+    private Long ethnicitySerialId;
 
-    @Column(name = "resign_date")
-    private Date resignDate;
+    private Long religionSerialId;
 
-    @Column(name = "bank_name")
-    private String bankName;
+    @Column(length = 30)
+    private String maritalStatus;
 
-    @Column(name = "bank_account")
-    private String bankAccount;
+    private Integer childrenCount;
 
-    /*@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", nullable = false)
-    private AppUserEntity user;*/
+    @Column(length = 150)
+    private String emergencyContact;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "department_id", nullable = false)
-    private DepartmentEntity department;
+    @Column(length = 30)
+    private String emergencyContactNumber;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "designation_id", nullable = false)
-    private DesignationEntity designation;
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String permaAddress1;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "status_id", nullable = false)
-    private StatusEntity status;
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String permaAddress2;
 
-    public EmployeeEntity() {
-    }
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String permaAddress3;
 
-    public Long getId() {
-        return id;
-    }
+    private Long districtSerialId;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private Long divSectSerialId;
 
-    public String getEmployeeCode() {
-        return employeeCode;
-    }
+    private Long gndSerialId;
 
-    public void setEmployeeCode(String employeeCode) {
-        this.employeeCode = employeeCode;
-    }
+    @Column(length = 150)
+    private String electorateResidence;
 
-    public String getFirstName() {
-        return firstName;
-    }
+    private Long pollingSerialId;
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+    @Column(precision = 10, scale = 2)
+    private BigDecimal distanceToPollingCenter;
 
-    public String getLastName() {
-        return lastName;
-    }
+    @Column(length = 150)
+    private String permaMoh;
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+    private Long policeStationSerialId;
 
-    public String getEmail() {
-        return email;
-    }
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String currAddress1;
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String currAddress2;
 
-    public String getPhone() {
-        return phone;
-    }
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String currAddress3;
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+    private Long currDistrictSerialId;
 
-    public String getNic() {
-        return nic;
-    }
+    private Long currDivSectSerialId;
 
-    public void setNic(String nic) {
-        this.nic = nic;
-    }
+    private Long currGndSerialId;
 
-    public String getGender() {
-        return gender;
-    }
+    @Column(length = 150)
+    private String currMoh;
 
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
+    private Long currPoliceStationSerialId;
 
-    public String getAddress() {
-        return address;
-    }
+    private Long transportRouteSerialId;
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+    @Column(length = 150)
+    private String fartherName;
 
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
+    @Column(length = 30)
+    private String fatherContactNo;
 
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
+    @Column(length = 20)
+    private String fatherNic;
 
-    public Date getHireDate() {
-        return hireDate;
-    }
+    @Column(length = 30)
+    private String fatherStatus;
 
-    public void setHireDate(Date hireDate) {
-        this.hireDate = hireDate;
-    }
+    @Column(length = 150)
+    private String motherName;
 
-    public Date getResignDate() {
-        return resignDate;
-    }
+    @Column(length = 30)
+    private String motherContactNo;
 
-    public void setResignDate(Date resignDate) {
-        this.resignDate = resignDate;
-    }
+    @Column(length = 20)
+    private String motherNic;
 
-    public String getBankName() {
-        return bankName;
-    }
+    @Column(length = 30)
+    private String motherStatus;
 
-    public void setBankName(String bankName) {
-        this.bankName = bankName;
-    }
+    @Column(length = 150)
+    private String nominee1Name;
 
-    public String getBankAccount() {
-        return bankAccount;
-    }
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String nominee1Address1;
 
-    public void setBankAccount(String bankAccount) {
-        this.bankAccount = bankAccount;
-    }
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String nominee1Address2;
 
-    /*public AppUserEntity getUser() {
-        return user;
-    }
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String nominee1Address3;
 
-    public void setUser(AppUserEntity user) {
-        this.user = user;
-    }*/
+    @Column(length = 20)
+    private String nominee1Nic;
 
-    public DepartmentEntity getDepartment() {
-        return department;
-    }
+    @Column(length = 30)
+    private String nominee1Contact1;
 
-    public void setDepartment(DepartmentEntity department) {
-        this.department = department;
-    }
+    @Column(length = 30)
+    private String nominee1Contact2;
 
-    public DesignationEntity getDesignation() {
-        return designation;
-    }
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String nominee1Remarks;
 
-    public void setDesignation(DesignationEntity designation) {
-        this.designation = designation;
-    }
+    @Column(length = 150)
+    private String nominee2Name;
 
-    public StatusEntity getStatus() {
-        return status;
-    }
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String nominee2Address1;
 
-    public void setStatus(StatusEntity status) {
-        this.status = status;
-    }
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String nominee2Address2;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String nominee2Address3;
+
+    @Column(length = 20)
+    private String nominee2Nic;
+
+    @Column(length = 30)
+    private String nominee2Contact1;
+
+    @Column(length = 30)
+    private String nominee2Contact2;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String nominee2Remarks;
+
+    private LocalDate doj;
+
+    private LocalDate doc;
+
+    @Column(length = 30)
+    private String confirmationStatus;
+
+    private Long deptSerialId;
+
+    private Long sectSerialId;
+
+    private Long desigSerialId;
+
+    private Long jtSerialId;
+
+    @Column(length = 30)
+    private String grade;
+
+    @Column(length = 50)
+    private String scheme;
+
+    private Long buildingSerialId;
+
+    private Long floorSerialId;
+
+    private Long lineSerialId;
+
+    private Long shiftSerialId;
+
+    @Column(precision = 18, scale = 2)
+    private BigDecimal basicSalary;
+
+    private Boolean preOtAllowed;
+
+    private Boolean postOtAllowed;
+
+    @Column(precision = 10, scale = 2)
+    private BigDecimal allowedOtHrs;
+
+    private Boolean lateDeduct;
+
+    private Boolean epfEntitled;
+
+    @Column(length = 50)
+    private String epfNumber;
+
+    @Column(length = 50)
+    private String etfNumber;
+
+    @Column(length = 50)
+    private String bankAccNo;
+
+    @Column(length = 20)
+    private String bankCode;
+
+    private Long bankBranchSerialId;
+
+    private Boolean addAttendance;
+
+    private LocalDate dot;
+
+    @Column(length = 50)
+    private String terminationType;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String terminationReason;
+
+    private LocalDate lastWorkDate;
+
+    private Boolean serviceLtrIssued;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String notes;
+
+    @Column(length = 30)
+    private String inactiveStatus;
+
+    private Boolean active;
+
+    private Long createdBy;
+
+    private LocalDateTime createdDate;
+
+    private Long modifiedBy;
+
+    private LocalDateTime modifiedDate;
+
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
+
+    private Long deletedBy;
+
+    private LocalDateTime deletedDate;
+
+    @Column(precision = 18, scale = 2)
+    private BigDecimal attendanceBonus;
+
+    private Boolean attendanceBonusAllowed;
+
+    @Column(length = 30)
+    private String companyPhone2;
 }
