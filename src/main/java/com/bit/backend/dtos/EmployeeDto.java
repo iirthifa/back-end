@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 public class EmployeeDto {
     private Long id;
     private String eeid;
-    private Long comSerialId;
     private String imageName;
     private String empRef;
     private String empProxId;
@@ -116,10 +115,6 @@ public class EmployeeDto {
     private String notes;
     private String inactiveStatus;
     private Boolean active;
-    private Long createdBy;
-    private LocalDateTime createdDate;
-    private Long modifiedBy;
-    private LocalDateTime modifiedDate;
     private Boolean isDeleted;
     private Long deletedBy;
     private LocalDateTime deletedDate;
