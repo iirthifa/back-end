@@ -159,7 +159,7 @@ public class EmployeeEntity {
     private Long transportRouteSerialId;
 
     @Column(length = 150)
-    private String fartherName;
+    private String fatherName;
 
     @Column(length = 30)
     private String fatherContactNo;

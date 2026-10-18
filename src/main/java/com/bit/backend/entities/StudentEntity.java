@@ -45,9 +45,7 @@ public class StudentEntity extends AuditableEntity {
         this.studentCode = studentCode;
     }
 
-    public String getStudentName() {
-        return studentName;
-    }
+    public String getStudentName() { return studentName; }
 
     public void setStudentName(String studentName) {
         this.studentName = studentName;
