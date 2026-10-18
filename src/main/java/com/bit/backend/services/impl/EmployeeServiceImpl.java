@@ -153,7 +153,7 @@ public class EmployeeServiceImpl implements EmployeeServiceI {
         setIfPresent(dto.getCurrMoh(), existing::setCurrMoh);
         setIfPresent(dto.getCurrPoliceStationSerialId(), existing::setCurrPoliceStationSerialId);
         setIfPresent(dto.getTransportRouteSerialId(), existing::setTransportRouteSerialId);
-        setIfPresent(dto.getFartherName(), existing::setFartherName);
+        setIfPresent(dto.getFatherName(), existing::setFatherName);
         setIfPresent(dto.getFatherContactNo(), existing::setFatherContactNo);
         setIfPresent(dto.getFatherNic(), existing::setFatherNic);
         setIfPresent(dto.getFatherStatus(), existing::setFatherStatus);

@@ -58,7 +58,7 @@ public class EmployeeDto {
     private String currMoh;
     private Long currPoliceStationSerialId;
     private Long transportRouteSerialId;
-    private String fartherName;
+    private String fatherName;
     private String fatherContactNo;
     private String fatherNic;
     private String fatherStatus;
