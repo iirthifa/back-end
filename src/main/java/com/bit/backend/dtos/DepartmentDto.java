@@ -3,7 +3,7 @@ package com.bit.backend.dtos;
 import com.fasterxml.jackson.databind.JsonNode;
 
 public class DepartmentDto {
-    private Long id;
+    private Long dept_serial_id;
     private String deptCode;
     private String deptName;
     private String description;
@@ -14,11 +14,11 @@ public class DepartmentDto {
     }
 
     public Long getId() {
-        return id;
+        return dept_serial_id;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.dept_serial_id = id;
     }
 
     public String getDeptCode() {

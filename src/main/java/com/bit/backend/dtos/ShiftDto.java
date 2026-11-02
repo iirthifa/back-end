@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.time.LocalTime;
 
 public class ShiftDto {
-    private Long id;
+    private Long shift_serial_id;
     private String shiftCode;
     private String shiftName;
     private LocalTime startTime;
@@ -19,11 +19,11 @@ public class ShiftDto {
     }
 
     public Long getId() {
-        return id;
+        return shift_serial_id;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.shift_serial_id = id;
     }
 
     public String getShiftCode() {

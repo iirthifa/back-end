@@ -11,7 +11,7 @@ public class ShiftEntity extends AuditableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long shift_serial_id;
 
     @Column(name = "shift_code", length = 50)
     private String shiftCode;
@@ -39,11 +39,11 @@ public class ShiftEntity extends AuditableEntity {
     }
 
     public Long getId() {
-        return id;
+        return shift_serial_id;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.shift_serial_id = id;
     }
 
     public String getShiftCode() {
