@@ -8,7 +8,7 @@ public class DepartmentEntity extends AuditableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long dept_serial_id;
 
     @Column(name = "dept_code", length = 50)
     private String deptCode;
@@ -31,11 +31,11 @@ public class DepartmentEntity extends AuditableEntity {
     }
 
     public Long getId() {
-        return id;
+        return dept_serial_id;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.dept_serial_id = id;
     }
 
     public String getDeptCode() {
