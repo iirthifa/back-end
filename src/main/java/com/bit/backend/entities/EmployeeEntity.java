@@ -18,16 +18,14 @@ import java.time.LocalDateTime;
 @Table(name = "employee")
 @Getter
 @Setter
-public class EmployeeEntity {
+public class EmployeeEntity extends AuditableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 50)
+    @Column(length = 50, unique = true)
     private String eeid;
-
-    private Long comSerialId;
 
     @Column(length = 255)
     private String imageName;
@@ -318,14 +316,6 @@ public class EmployeeEntity {
     private String inactiveStatus;
 
     private Boolean active;
-
-    private Long createdBy;
-
-    private LocalDateTime createdDate;
-
-    private Long modifiedBy;
-
-    private LocalDateTime modifiedDate;
 
     @Column(name = "is_deleted")
     private Boolean isDeleted;

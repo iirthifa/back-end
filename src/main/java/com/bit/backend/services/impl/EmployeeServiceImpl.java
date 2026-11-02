@@ -29,6 +29,8 @@ public class EmployeeServiceImpl implements EmployeeServiceI {
     public EmployeeDto addEmployee(EmployeeDto employeeDto) {
         EmployeeEntity entity = employeeMapper.toEmployeeEntity(employeeDto);
         entity.setId(null);
+        entity.setEeid(nextEeid());
+        entity.setIsDeleted(Boolean.FALSE);
         clearEmploymentFields(entity);
         return employeeMapper.toEmployeeDto(employeeRepository.save(entity));
     }
@@ -99,21 +101,12 @@ public class EmployeeServiceImpl implements EmployeeServiceI {
         entity.setNotes(null);
         entity.setInactiveStatus(null);
         entity.setActive(null);
-        entity.setCreatedBy(null);
-        entity.setCreatedDate(null);
-        entity.setModifiedBy(null);
-        entity.setModifiedDate(null);
-        entity.setIsDeleted(null);
-        entity.setDeletedBy(null);
-        entity.setDeletedDate(null);
         entity.setAttendanceBonus(null);
         entity.setAttendanceBonusAllowed(null);
         entity.setCompanyPhone2(null);
     }
 
     private void applyPersonalFields(EmployeeEntity existing, EmployeeDto dto) {
-        setIfPresent(dto.getEeid(), existing::setEeid);
-        setIfPresent(dto.getComSerialId(), existing::setComSerialId);
         setIfPresent(dto.getImageName(), existing::setImageName);
         setIfPresent(dto.getEmpRef(), existing::setEmpRef);
         setIfPresent(dto.getEmpProxId(), existing::setEmpProxId);
@@ -220,13 +213,6 @@ public class EmployeeServiceImpl implements EmployeeServiceI {
         setIfPresent(dto.getNotes(), existing::setNotes);
         setIfPresent(dto.getInactiveStatus(), existing::setInactiveStatus);
         setIfPresent(dto.getActive(), existing::setActive);
-        setIfPresent(dto.getCreatedBy(), existing::setCreatedBy);
-        setIfPresent(dto.getCreatedDate(), existing::setCreatedDate);
-        setIfPresent(dto.getModifiedBy(), existing::setModifiedBy);
-        setIfPresent(dto.getModifiedDate(), existing::setModifiedDate);
-        setIfPresent(dto.getIsDeleted(), existing::setIsDeleted);
-        setIfPresent(dto.getDeletedBy(), existing::setDeletedBy);
-        setIfPresent(dto.getDeletedDate(), existing::setDeletedDate);
         setIfPresent(dto.getAttendanceBonus(), existing::setAttendanceBonus);
         setIfPresent(dto.getAttendanceBonusAllowed(), existing::setAttendanceBonusAllowed);
         setIfPresent(dto.getCompanyPhone2(), existing::setCompanyPhone2);
@@ -236,5 +222,11 @@ public class EmployeeServiceImpl implements EmployeeServiceI {
         if (value != null) {
             setter.accept(value);
         }
+    }
+
+    private String nextEeid() {
+        Integer max = employeeRepository.findMaxEeidNumber();
+        int next = (max == null ? 0 : max) + 1;
+        return String.format("%04d", next);
     }
 }
